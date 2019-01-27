@@ -100,6 +100,10 @@ struct AppConfig
 void main()
 {
 	bool noMonitoring;
+
+	import std.random : rndGen, unpredictableSeed;
+	rndGen.seed(unpredictableSeed);
+
 	setLogFile("log.txt", LogLevel.diagnostic);
 
     version (linux)
@@ -107,8 +111,8 @@ void main()
     	// register memory error handler on heroku
     	if ("DYNO" in environment)
     	{
-			import etc.linux.memoryerror : registerMemoryErrorHandler;
-        	registerMemoryErrorHandler();
+//			import etc.linux.memoryerror : registerMemoryErrorHandler;
+//        	registerMemoryErrorHandler();
         }
     }
 
